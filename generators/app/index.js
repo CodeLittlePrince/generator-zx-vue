@@ -26,20 +26,20 @@ module.exports = class extends Generator {
         message: 'Description:',
         default: '',
       },
-      {
-        type: 'confirm',
-        name: 'includeVuex',
-        message: 'Would you like to include Vuex in your project?',
-        default: false,
-      }
+      // {
+      //   type: 'confirm',
+      //   name: 'includeVuex',
+      //   message: 'Would you like to include Vuex in your project?',
+      //   default: false,
+      // }
     ]
     return this.prompt(prompts).then(answers => {
       this.name = answers.name
       this.description = answers.description
-      this.includeVuex = answers.includeVuex
+      // this.includeVuex = answers.includeVuex
       this.log(chalk.green('name: ', this.name))
       this.log(chalk.green('description: ', this.description))
-      this.log(chalk.green('includeVuex: ', this.includeVuex))
+      // this.log(chalk.green('includeVuex: ', this.includeVuex))
     })
   }
 
@@ -60,9 +60,9 @@ module.exports = class extends Generator {
       const pkgJson = {
         name: this.name,
         description: this.description,
-        dependencies: {
-          vuex: '^3.0.1'
-        }
+        // dependencies: {
+        //   vuex: '^3.0.1'
+        // }
       }
       // Extend or create package.json file in destination path
       this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
