@@ -46,9 +46,13 @@ module.exports = class extends Generator {
   writing() {
     // 复制普通文件
     // https://github.com/sboudrias/mem-fs-editor
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath(),
       this.destinationPath(),
+      {
+        name: this.name
+      },
+      {},
       { globOptions:
         {
           dot: true
