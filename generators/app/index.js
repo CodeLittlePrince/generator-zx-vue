@@ -27,6 +27,21 @@ module.exports = class extends Generator {
         default: '',
       },
       {
+        type: 'list',
+        name: 'ieVersion',
+        message: 'Which version of IE would you like to support?',
+        choices: [{
+          name: 'IE 9',
+          value: '9'
+        }, {
+          name: 'IE 10',
+          value: '10'
+        }, {
+          name: 'IE 11 or higher',
+          value: '11'
+        }]
+      },
+      {
         type: 'confirm',
         name: 'includeVuex',
         message: 'Would you like to include Vuex in your project?',
@@ -36,10 +51,24 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(answers => {
       this.name = answers.name
       this.description = answers.description
+      this.ieVersion = answers.ieVersion
       this.includeVuex = answers.includeVuex
       this.log(chalk.green('name: ', this.name))
       this.log(chalk.green('description: ', this.description))
+      this.log(chalk.green('ieVersion: ', this.ieVersion))
       this.log(chalk.green('includeVuex: ', this.includeVuex))
+      // 处理ie version
+      this.ieVersionSupport = ''
+      switch (this.ieVersion) {
+        case '9':
+          this.ieVersionSupport = 'ie >= 9'
+          break;
+        case '10':
+          this.ieVersionSupport = 'ie >= 10'
+          break;
+        default:
+          this.ieVersionSupport = 'ie >= 11'
+      }
     })
   }
 
@@ -50,7 +79,8 @@ module.exports = class extends Generator {
       this.templatePath(),
       this.destinationPath(),
       {
-        name: this.name
+        name: this.name,
+        ieVersion: this.ieVersionSupport
       },
       {},
       { globOptions:
