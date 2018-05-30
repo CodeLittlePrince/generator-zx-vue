@@ -1,3 +1,0 @@
-[submodule "generators/app/templates"]
-	path = generators/app/templates
-	url = https://github.com/CodeLittlePrince/vue-construct-for-zx-vue.git
