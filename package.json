@@ -25,6 +25,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^22.0.6",
     "lint-staged": "^6.1.1",
+    "np": "^3.0.2",
     "nsp": "^2.8.0",
     "prettier": "^1.11.1",
     "yeoman-assert": "^3.1.0",
@@ -45,7 +46,8 @@
     "prepublishOnly": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "release": "np --yolo"
   },
   "lint-staged": {
     "*.js": [
