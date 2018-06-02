@@ -1,4 +1,4 @@
-Vue之脚手架
+Vue前端架构
 ---
 想想也做过不少不同架构的项目，有Vue，有React，有ThinkPHP，有Laravel。
 这是本王总结了很多项目下来的经验做的前端项目架构。
@@ -27,6 +27,7 @@ nodemon                 | 修改node代码不需要重启监听，一直运行�
 5. nodemon让改node代码变得更加顺滑。
 6. 使用mockjs模拟接口返回数据。
 7. scss支持识别2倍3倍图加载（除了接口获取的图，所有图都用背景图方案）
+8. git hooks，防止不符合规范的提交
 
 ### 测试
 1. 单元测试
@@ -45,18 +46,21 @@ nodemon                 | 修改node代码不需要重启监听，一直运行�
 1. 模拟数据
 `npm run mock`
 2. 页面开发
+`npm run watch`
+3. 一起启动
 `npm run dev`
 
 ### 测试
 1. 单元测试
 `npm run test:unit`
 2. e2e测试
-`npm run mock`
 `npm run dev`
 `npm run test:e2e`
-因为e2e其实就是正常访问网页，所以启动起来略繁琐
+
+### 代码大小分析
+`npm run analyze`
 
 ### 发布
 `npm run prod`
 
-![Vue之脚手架](https://github.com/CodeLittlePrince/ImagesForGithub/blob/master/vue-construct-1.png?raw=true)
+![Vue前端架构](https://github.com/CodeLittlePrince/ImagesForGithub/blob/master/vue-construct-1.png?raw=true)
