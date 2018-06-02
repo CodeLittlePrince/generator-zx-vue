@@ -11,6 +11,6 @@ describe('generator-zx-vue:app', () => {
   });
 
   it('creates files', () => {
-    assert.file(['dummyfile.txt']);
+    assert.file(['templates']);
   });
 });
