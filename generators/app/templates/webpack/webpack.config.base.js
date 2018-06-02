@@ -24,7 +24,7 @@ const extractAppCSS
 
 // 减少路径书写
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, '../' + dir)
 }
 
 // 网站图标配置
@@ -39,14 +39,13 @@ const config = {
     extensions: ['.js', '.vue', '.scss', '.css'],
     // 取路径别名，方便在业务代码中import
     alias: {
-      api: resolve('app/api/'),
-      common: resolve('app/common/'),
-      views: resolve('app/views/'),
-      components: resolve('app/components/'),
-      componentsBase: resolve('app/componentsBase/'),
-      directives: resolve('app/directives/'),
-      filters: resolve('app/filters/'),
-      mixins: resolve('app/mixins/')
+      common: resolve('src/common/'),
+      views: resolve('src/views/'),
+      components: resolve('src/components/'),
+      componentsBase: resolve('src/componentsBase/'),
+      directives: resolve('src/directives/'),
+      filters: resolve('src/filters/'),
+      mixins: resolve('src/mixins/')
     }
   },
   // loaders处理
@@ -54,7 +53,7 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        include: [resolve('app')],
+        include: [resolve('src')],
         loader: [
           'babel-loader',
           'eslint-loader'
@@ -95,6 +94,7 @@ const config = {
       },
       {
         test: /\.(css|scss)$/,
+        include: [resolve('src/common/scss')],
         use: extractBaseCSS.extract({
           fallback: 'style-loader',
           use: [

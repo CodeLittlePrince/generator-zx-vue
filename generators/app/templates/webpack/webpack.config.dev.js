@@ -8,7 +8,7 @@ const config = Object.assign(webpackConfigBase.config, {
   devtool: 'cheap-module-eval-source-map',
   // 入口
   entry: {
-    app: webpackConfigBase.resolve('app/index.js')
+    app: webpackConfigBase.resolve('src/index.js')
   },
   // 输出
   output: {
@@ -20,7 +20,7 @@ const config = Object.assign(webpackConfigBase.config, {
     new HtmlWebpackPlugin({
       favicon: webpackConfigBase.favicon,
       filename: 'index.html',
-      template: webpackConfigBase.resolve('app/index.html')
+      template: webpackConfigBase.resolve('src/index.html')
     }),
     // 抽离出css，开发环境其实不抽离，但是为了配合extract-text-webpack-plugin插件，需要做个样子
     webpackConfigBase.extractAppCSS,
@@ -40,7 +40,6 @@ const config = Object.assign(webpackConfigBase.config, {
       }
     },
     host: '0.0.0.0',
-    port: '9999',
     disableHostCheck: true, // 为了手机可以访问
     contentBase: webpackConfigBase.resolve('dev'), // 本地服务器所加载的页面所在的目录
     // historyApiFallback: true, // 为了SPA应用服务

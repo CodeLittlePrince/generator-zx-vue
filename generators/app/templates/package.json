@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "mock": "nodemon ./mock/server.js",
-    "dev": "webpack-dev-server --progress --colors --open --config webpack.config.dev.js",
-    "prod": "NODE_ENV=production webpack -p --progress --colors --config webpack.config.prod.js",
+    "watch": "webpack-dev-server --progress --colors --open --config webpack/webpack.config.dev.js",
+    "dev": "concurrently 'npm run mock' 'npm run watch'",
+    "analyze": "NODE_ENV=production ANALYZE=active webpack -p --progress --colors --config webpack/webpack.config.prod.js",
+    "prod": "NODE_ENV=production webpack -p --progress --colors --config webpack/webpack.config.prod.js",
     "test:unit": "karma start test/unit/karma.conf.js",
     "test:e2e": "mocha ./test/e2e/index.js",
-    "lint": "eslint --ext .vue,.js ./app/**"
+    "lint": "eslint --ext .vue,.js ./src/**"
   },
   "husky": {
     "hooks": {
@@ -32,6 +34,7 @@
     "boom": "^7.1.1",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.17",
+    "concurrently": "^3.5.1",
     "css-loader": "^0.28.9",
     "eslint": "^4.16.0",
     "eslint-loader": "^1.9.0",

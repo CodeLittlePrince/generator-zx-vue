@@ -108,21 +108,21 @@ module.exports = class extends Generator {
       pkgJson.dependencies = {
         vuex: '^3.0.1'
       };
-      // 覆盖含有vuex调用的文件（从app/files-for-add-vuex中提取）
-      // 1.app/index.js
+      // 覆盖含有vuex调用的文件（从src/files-for-add-vuex中提取）
+      // 1.src/index.js
       this.fs.copy(
-        this.templatePath('app/files-for-add-vuex/index.js'),
-        this.destinationPath('app/index.js')
+        this.templatePath('src/files-for-add-vuex/index.js'),
+        this.destinationPath('src/index.js')
       );
-      // 2.app/views/home/index.vue
+      // 2.src/views/home/index.vue
       this.fs.copy(
-        this.templatePath('app/files-for-add-vuex/views/home/index.vue'),
-        this.destinationPath('app/views/home/index.vue')
+        this.templatePath('src/files-for-add-vuex/views/home/index.vue'),
+        this.destinationPath('src/views/home/index.vue')
       );
-      // 3. 把store拿出来(app/store)
+      // 3. 把store拿出来(src/store)
       this.fs.copy(
-        this.templatePath('app/files-for-add-vuex/store'),
-        this.destinationPath('app/store')
+        this.templatePath('src/files-for-add-vuex/store'),
+        this.destinationPath('src/store')
       );
     }
     // Extend or create package.json file in destination path
