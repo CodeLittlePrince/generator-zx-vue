@@ -39,7 +39,9 @@ const config = {
     extensions: ['.js', '.vue', '.scss', '.css'],
     // 取路径别名，方便在业务代码中import
     alias: {
+      src: resolve('src/'),
       common: resolve('src/common/'),
+      ajax: resolve('src/common/js/ajax/'),
       views: resolve('src/views/'),
       components: resolve('src/components/'),
       componentsBase: resolve('src/componentsBase/'),
@@ -52,44 +54,22 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: [resolve('src')],
-        loader: [
-          'babel-loader',
-          'eslint-loader'
-        ]
+        test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          name: isProduction
+            ? 'static/img/[name].[hash:8].[ext]'
+            : 'static/img/[name].[ext]'
+        }
       },
       {
-        test: /\.vue$/,
-        exclude: /node_modules/,
-        loader: 'vue-loader',
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
         options: {
-          extractCSS: true,
-          loaders: {
-            scss: extractAppCSS.extract({
-              fallback: 'vue-style-loader',
-              use: [
-                {
-                  loader: 'css-loader',
-                  options: {
-                    sourceMap: true
-                  }
-                },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    sourceMap: true
-                  }
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: true
-                  }
-                }
-              ]
-            })
-          }
+          limit: 8192,
+          name: isProduction
+            ? 'static/font/[name].[hash:8].[ext]'
+            : 'static/font/[name].[ext]'
         }
       },
       {
@@ -120,23 +100,44 @@ const config = {
         })
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          name: isProduction
-            ? 'static/img/[name].[hash:8].[ext]'
-            : 'static/img/[name].[ext]'
-        }
+        test: /\.js$/,
+        include: [resolve('src')],
+        loader: [
+          'babel-loader',
+          'eslint-loader'
+        ]
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader',
         options: {
-          limit: 8192,
-          name: isProduction
-            ? 'static/font/[name].[hash:8].[ext]'
-            : 'static/font/[name].[ext]'
+          extractCSS: true,
+          loaders: {
+            scss: extractAppCSS.extract({
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    sourceMap: true
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    sourceMap: true
+                  }
+                },
+                {
+                  loader: 'sass-loader',
+                  options: {
+                    sourceMap: true
+                  }
+                }
+              ]
+            })
+          }
         }
       }
     ]
