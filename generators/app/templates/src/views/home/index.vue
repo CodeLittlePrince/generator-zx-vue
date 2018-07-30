@@ -22,7 +22,6 @@
       this.$ajax.get('/home/hello', { params: { page: 7 } })
       // this.$ajax.post('/home/hello', { page: 7 }) // FOR POST
         .then(res => {
-          const data = res.data
           console.log(`%c${res}`, 'color: blue')
         })
         .catch(e => {
@@ -31,7 +30,6 @@
       // ajax get data
       this.$ajax.get('/home/kitty')
         .then(res => {
-          const data = res.data
           console.log(`%c${res}`, 'color: blue')
         })
         .catch(e => {
