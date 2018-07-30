@@ -13,7 +13,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import mixinsSample from 'mixins/sample'
   import { mapGetters, mapActions } from 'vuex'
 
@@ -26,8 +25,8 @@
     },
     mounted() {
       // ajax get data
-      axios.get('/home/hello', { params: { page: 7 } })
-      // axios.post('/home/hello', { page: 7 }) // FOR POST
+      this.$ajax.get('/home/hello', { params: { page: 7 } })
+      // this.$ajax.post('/home/hello', { page: 7 }) // FOR POST
         .then(res => {
           const data = res.data
           console.log(`%c${data.msg}`, 'color: blue')
@@ -36,7 +35,7 @@
           console.error(e)
         })
       // ajax get data
-      axios.get('/home/kitty')
+      this.$ajax.get('/home/kitty')
         .then(res => {
           const data = res.data
           console.log(`%c${data.msg}`, 'color: blue')
