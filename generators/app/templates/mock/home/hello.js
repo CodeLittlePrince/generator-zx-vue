@@ -19,26 +19,26 @@ module.exports = function (params, key) {
     switchDatas = {
       'success': {
         msg: 'mock hello api for success, and page is 7',
-        data: data,
+        result: data,
         imgUrl: img,
-        code: 0
+        status: 200
       },
       'error': {
         msg: 'mock hello api for error, and page is 7',
-        code: 1
+        status: 422
       }
     }
   } else {
     switchDatas = {
       'success': {
         msg: 'mock hello api for success, and page is not 7',
-        data: data,
+        result: data,
         imgUrl: img,
-        code: 0
+        status: 200
       },
       'error': {
         msg: 'mock hello api for error, and page is not 7',
-        code: 1
+        status: 422
       }
     }
   }

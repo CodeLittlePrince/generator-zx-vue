@@ -13,8 +13,8 @@ const img = Mock.Random.image('200x100')
 module.exports = function() {
   return {
     msg: 'mock kitty api',
-    data: data,
+    result: data,
     imgUrl: img,
-    code: 0
+    status: 200
   }
 }

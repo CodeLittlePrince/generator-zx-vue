@@ -15,7 +15,11 @@ function getIP() {
   return addresses[0]
 }
 
+const ip = getIP(0)
+// const ip = 'localhost' // 没网络的情况下可用这句
+
 module.exports = {
+  ip: ip,
   domain: `http://${getIP()}`,
   port: '7777'
 }
