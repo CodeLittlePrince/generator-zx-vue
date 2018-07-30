@@ -23,7 +23,7 @@
       // this.$ajax.post('/home/hello', { page: 7 }) // FOR POST
         .then(res => {
           const data = res.data
-          console.log(`%c${data.msg}`, 'color: blue')
+          console.log(`%c${res}`, 'color: blue')
         })
         .catch(e => {
           console.error(e)
@@ -32,7 +32,7 @@
       this.$ajax.get('/home/kitty')
         .then(res => {
           const data = res.data
-          console.log(`%c${data.msg}`, 'color: blue')
+          console.log(`%c${res}`, 'color: blue')
         })
         .catch(e => {
           console.error(e)
