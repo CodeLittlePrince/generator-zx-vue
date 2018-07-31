@@ -93,7 +93,8 @@ module.exports = class extends Generator {
         globOptions: {
           // https://github.com/isaacs/node-glob
           dot: true,
-          ignore: ['**/files-for-add-vuex']
+          ignore: ['**/files-for-add-vuex/**'],
+          gitignore: false
         }
       }
     );
