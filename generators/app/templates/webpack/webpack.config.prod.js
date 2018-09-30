@@ -1,11 +1,13 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const exec = require('child_process').execSync
 const webpackConfigBase = require('./webpack.config.base.js')
 const pkg = require('../package.json')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const ANALYZE = process.env.ANALYZE
+const CDN = process.env.CDN || './'
 
 // 网站版本号设置
 let appVersion = ''
@@ -26,7 +28,7 @@ const config = Object.assign(webpackConfigBase.config, {
   output: {
     path: webpackConfigBase.resolve('dist'),
     // publicPath: 'https://cdn.self.com'
-    publicPath: './',
+    publicPath: CDN,
     filename: 'static/js/[name].[chunkhash:8].js'
   },
   plugins: [
@@ -40,8 +42,8 @@ const config = Object.assign(webpackConfigBase.config, {
       }
     ),
     // 抽离出css
-    webpackConfigBase.extractAppCSS,
     webpackConfigBase.extractBaseCSS,
+    webpackConfigBase.extractAppCSS,
     // 提取vendor,和公共commons
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'commons']
@@ -49,7 +51,6 @@ const config = Object.assign(webpackConfigBase.config, {
     // html 模板插件
     new HtmlWebpackPlugin({
       appVersion,
-      favicon: webpackConfigBase.favicon,
       filename: 'index.html',
       template: webpackConfigBase.resolve('src/index.html'),
       minify: {
@@ -57,6 +58,14 @@ const config = Object.assign(webpackConfigBase.config, {
         collapseWhitespace: false
       }
     }),
+    // 复制文件
+    new CopyWebpackPlugin([
+      // 复制favicon到dist
+      {
+        from: webpackConfigBase.favicon,
+        to: webpackConfigBase.resolve('dev')
+      }
+    ]),
     // 定义全局常量
     new webpack.DefinePlugin({
       'process.env': {
