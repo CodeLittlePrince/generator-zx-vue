@@ -42,9 +42,9 @@ function _request(type, url, params, resolve, reject, conf) {
 
 /**
  * 处理数据返回
- * @param {*} res 
- * @param {*} resolve 
- * @param {*} reject 
+ * @param {*} res
+ * @param {*} resolve
+ * @param {*} reject
  */
 function _dealResponse(res, resolve, reject) {
   const data = res.data || res
