@@ -2,6 +2,8 @@ import 'babel-polyfill' // https://babeljs.io/docs/plugins/preset-env/#usebuilti
 import 'common/scss/index'
 import Vue from 'vue'
 import ajax from 'ajax'
+import './componentsBase'
+import './components'
 import router from './router'
 import App from './app'
 import 'filters'
