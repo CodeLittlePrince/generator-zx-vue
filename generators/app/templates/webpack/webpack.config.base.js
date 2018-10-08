@@ -55,7 +55,19 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(svg)(\?.*)?$/,
+        include: svgBase64Reg,
+        loader: 'url-loader',
+        options: {
+          limit: 99999,
+          name: isProduction
+            ? 'static/font/[name].[hash:8].[ext]'
+            : 'static/font/[name].[ext]'
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
+        exclude: svgBase64Reg,
         loader: 'file-loader',
         options: {
           name: isProduction
@@ -75,7 +87,10 @@ const config = {
       },
       {
         test: /\.(css|scss)$/,
-        include: [resolve('src/common/scss')],
+        include: [
+          resolve('src/common/scss'),
+          resolve('node_modules')
+        ],
         use: extractBaseCSS.extract({
           fallback: 'style-loader',
           use: [
