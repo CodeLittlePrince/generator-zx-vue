@@ -21,7 +21,7 @@ const ajax = {
 function _request(type, url, params, resolve, reject, conf) {
   const paramsProcessed = type === 'get' ? {params: params} : params
   let config = conf || {}
-  // 后端数据返回格式（用户可以根据各个产品的后端返回自行改变）
+  // 后端数据返回格式
   // {
   //   "status": "200",
   //   "message": "some message",
@@ -32,7 +32,7 @@ function _request(type, url, params, resolve, reject, conf) {
       _dealResponse(res, resolve, reject)
     }).catch(err => {
       // 捕获不是ajax获取后，状态码造成的异常
-      // code 999，是为了标识网络故障（需要和数据员和后端商量确定）
+      // code 999，是为了标识网络故障（已和数据员和后端商量确定）
       reject({
         text: err.response.statusText,
         code: 999
