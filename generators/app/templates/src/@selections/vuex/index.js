@@ -10,9 +10,6 @@ import 'filters'
 import 'directives'
 import store from './store'
 
-// use 插件
-Vue.use(ajax)
-
 new Vue({
   el: '#app',
   router,
