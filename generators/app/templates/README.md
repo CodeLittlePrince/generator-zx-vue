@@ -65,7 +65,7 @@ componentsBase: `npm run build:componentsBase`
 
 #### 2.e2e测试
 `npm run dev`
-`npm run test:e2e`
+`npm run test:e2e http(s)://{your domain and port}`
 
 ### 代码大小分析
 `npm run analyze`

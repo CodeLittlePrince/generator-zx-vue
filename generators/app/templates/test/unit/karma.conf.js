@@ -28,7 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap', 'coverage']
+      './index.js': ['webpack', 'sourcemap']
     },
 
 
@@ -44,10 +44,6 @@ module.exports = function(config) {
         { type: 'text-summary' }
       ]
     },
-
-
-    // web server port
-    port: 9876,
 
 
     // enable / disable colors in the output (reporters and logs)
